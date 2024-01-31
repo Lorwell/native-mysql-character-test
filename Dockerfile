@@ -5,7 +5,7 @@ ADD . /build
 WORKDIR /build
 
 # 执行编译
-RUN bash -c "source /etc/profile && dos2unix /build/gradlew && /build/gradlew nativeCompile"
+RUN bash -c "source /etc/profile && chmod 755 -R /build && dos2unix /build/gradlew && /build/gradlew nativeCompile"
 
 # 为了查看本地编译的文件顾使用该命令直接运行
 CMD [ "sh", "-c", "/build/build/native/nativeCompile/native-mysql-character-test -Dfile.encoding=UTF-8 -Dsun.jnu.encoding=UTF-8"]
