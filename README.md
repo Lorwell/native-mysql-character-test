@@ -53,6 +53,8 @@ curl -X POST --location "http://localhost:8080/demo" \
 
 **jdbc 链接中的 `useUnicode=true&characterEncoding=UTF-8`是导致乱码的罪魁祸首，在去除后可以正常使用**
 
+如果想体验乱码可以在 `application.yaml` 中将jdbc链接替换为 `jdbc:mysql://host.docker.internal:3306/nativemysqlcharactertest?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2b8`，在次运行时将会出现乱码
+
 ### 分支 no-mysql
 
 去除mysql 相关依赖，用于验证是否是编译的问题，项目直接运行 `gradlew nativeRun`
