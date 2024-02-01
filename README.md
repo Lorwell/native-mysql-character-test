@@ -29,6 +29,30 @@ gradlew nativeRun
 docker  build -t nativemysqlcharactertest .
 ```
 
+可以使用以下 curl 命令测试
+
+模糊查询
+
+```bash
+curl -X GET --location "http://localhost:8080/demo?nickname=%E6%B5%8B%E8%AF%95"
+```
+
+添加信息
+
+```bash
+curl -X POST --location "http://localhost:8080/demo" \
+    -H "Content-Type: application/json" \
+    -d '{
+          "nickname": "测试999"
+        }'
+```
+
+
+
+最终得出结论：
+
+**jdbc 链接中的 `useUnicode=true&characterEncoding=UTF-8`是导致乱码的罪魁祸首，在去除后可以正常使用**
+
 ### 分支 no-mysql
 
 去除mysql 相关依赖，用于验证是否是编译的问题，项目直接运行 `gradlew nativeRun`

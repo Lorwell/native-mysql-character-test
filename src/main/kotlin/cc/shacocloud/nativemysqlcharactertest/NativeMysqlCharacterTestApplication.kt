@@ -14,6 +14,11 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 class NativeMysqlCharacterTestApplication
 
 fun main(args: Array<String>) {
+    println("操作系统默认字符编码: ${System.getProperties()["sun.jnu.encoding"]}")
+    println("默认字符集: ${System.getProperties()["file.encoding"]}")
+    println("用户语言地区: ${System.getProperty("user.language")}")
+
+
     val application = runApplication<NativeMysqlCharacterTestApplication>(*args)
 
     val userRepository = application.getBean(UserRepository::class.java)
