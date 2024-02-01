@@ -18,13 +18,19 @@ fun main(args: Array<String>) {
 
     val userRepository = application.getBean(UserRepository::class.java)
 
+
+    println("打印中文：${"测试"}")
+    println("测试")
+
     val str = (1..5).joinToString(separator = "") { "123456789".random().toString() }
-    userRepository.saveAndFlush(
-        UserPo(nickname = "测试${str}")
-    )
+    val addUserPo = UserPo(nickname = "测试${str}")
+
+    println("添加用户信息：${addUserPo}")
+
+    userRepository.saveAndFlush(addUserPo)
 
     val userPos = userRepository.findByNicknameLike("%测试%")
     for (userPo in userPos) {
-        println(userPo)
+        println("打印查询用户信息：${userPo}")
     }
 }
