@@ -45,31 +45,15 @@ repositories {
     google()
 }
 
-// 强制所有实体为 open 不为 final，避免不能被子类化，导致 Hibernate 的代理机制关闭
-allOpen {
-    annotation("jakarta.persistence.Entity")
-    annotation("jakarta.persistence.Embeddable")
-    annotation("jakarta.persistence.MappedSuperclass")
-}
-
 dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-actuator")
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-    implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.springframework.boot:spring-boot-configuration-processor")
-    runtimeOnly("io.micrometer:micrometer-registry-prometheus")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-    runtimeOnly("com.mysql:mysql-connector-j")
 }
 
-hibernate {
-    enhancement {
-        enableAssociationManagement.set(true)
-    }
-}
 
 
 tasks.withType<KotlinCompile> {
